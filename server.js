@@ -3,8 +3,8 @@ const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv');
 dotenv.config();
-const { errorHandler } = require('./middleware/errorMiddleware');
-const connectDB = require('./config/db');
+const { errorHandler } = require('./backend/middleware/errorMiddleware');
+const connectDB = require('./backend/config/db');
 const port = process.env.PORT || 5000;
 
 connectDB();
@@ -19,10 +19,10 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
-app.use('/api/goals', require('./routes/goalRoutes'));
-app.use('/users', require('./routes/userRoutes'));
-app.use('/managers', require('./routes/managerRoutes'));
-app.use('/admin', require('./routes/adminRoutes'));
+app.use('/api/goals', require('./backend/routes/goalRoutes'));
+app.use('/users', require('./backend/routes/userRoutes'));
+app.use('/managers', require('./backend/routes/managerRoutes'));
+app.use('/admin', require('./backend/routes/adminRoutes'));
 
 // Serve frontend
 if (process.env.NODE_ENV === 'production') {
