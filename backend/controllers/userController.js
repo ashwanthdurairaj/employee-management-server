@@ -7,7 +7,7 @@ const Manager = require('../models/managerModel')
 const Task = require('../models/taskModel')
 const Leave = require('../models/leaveModel')
 const Thread = require('../models/threadModel')
-const { LocalConvenienceStoreOutlined } = require('@material-ui/icons')
+// const { LocalConvenienceStoreOutlined } = require('@material-ui/icons')
 
 
 // @desc    Register new user
