@@ -19,23 +19,26 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
+
+app.get('/', (req, res) => res.send('Please set to production'));
+
 app.use('/api/goals', require('./backend/routes/goalRoutes'));
 app.use('/users', require('./backend/routes/userRoutes'));
 app.use('/managers', require('./backend/routes/managerRoutes'));
 app.use('/admin', require('./backend/routes/adminRoutes'));
 
 // Serve frontend
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-  app.get('*', (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
-    )
-  );
-} else {
-  app.get('/', (req, res) => res.send('Please set to production'));
-}
+//   app.get('*', (req, res) =>
+//     res.sendFile(
+//       path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+//     )
+//   );
+// } else {
+//   app.get('/', (req, res) => res.send('Please set to production'));
+// }
 
 app.use(errorHandler);
 
